@@ -10,6 +10,7 @@ namespace WebMailSample
 {
     public partial class MailPage : Page
     {
+       
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -81,4 +82,6 @@ namespace WebMailSample
             #endregion
         }
     }
+
+   
 }

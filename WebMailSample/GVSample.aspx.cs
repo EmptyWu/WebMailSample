@@ -15,6 +15,10 @@ namespace WebMailSample
         {
             if (!IsPostBack)
             {
+                string id = Request.QueryString["id"];
+
+                
+                
                 bind();
             }
         }
@@ -22,6 +26,8 @@ namespace WebMailSample
         private void bind()
         {
             string SQL = @"select * from Supplies_Items";
+            var dt = GetData(SQL);
+           
             gv.DataSource = GetData(SQL);
             gv.DataBind();
         }

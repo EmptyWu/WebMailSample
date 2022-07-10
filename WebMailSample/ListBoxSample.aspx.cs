@@ -9,10 +9,25 @@ namespace WebMailSample
 {
     public partial class ListBoxSample : System.Web.UI.Page
     {
+        private List<Temp> GetTemp
+        {
+            get
+            {
+                return (List<Temp>)ViewState["temp"];
+            }
+            set
+            {
+                ViewState["temp"] = value;
+            }
+        }
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+                string id = Request.QueryString["id"];
+                txt.Text = id;
+                GetTemp = new List<Temp>();
                 bindListBox();
             }
         }
@@ -28,19 +43,36 @@ namespace WebMailSample
 
         protected void rbMode_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lb.SelectionMode = rbMode.SelectedValue == "Single"? ListSelectionMode.Single: ListSelectionMode.Multiple;
+            lb.SelectionMode = rbMode.SelectedValue == "Single" ? ListSelectionMode.Single : ListSelectionMode.Multiple;
         }
 
         protected void btnGet_Click(object sender, EventArgs e)
         {
             txt.Text = "";
-            foreach (ListItem l in lb.Items)
+            for (var i = 0; i < lb.Items.Count; i++)
             {
-                if (l.Selected)
+                if (lb.Items[i].Selected)
                 {
-                    txt.Text += l.Text + Environment.NewLine;
+                    //判斷id是否存在
+                    if (!GetTemp.Any(x => x._id.Equals(lb.Items[i].Value)))
+                    {
+                        GetTemp.Add(new Temp()
+                        {
+                            _id = lb.Items[i].Value,
+                            _text = lb.Items[i].Text
+                        });
+                    }
+                    txt.Text += lb.Items[i].Text + Environment.NewLine;
                 }
             }
+
+            //foreach (ListItem l in lb.Items)
+            //{
+            //    if (l.Selected)
+            //    {
+            //        txt.Text += l.Text + Environment.NewLine;
+            //    }
+            //}
         }
 
         protected void btnAll_Click(object sender, EventArgs e)
@@ -48,7 +80,7 @@ namespace WebMailSample
             txt.Text = "";
             foreach (ListItem l in lb.Items)
             {
-                    txt.Text += l.Text + Environment.NewLine;
+                txt.Text += l.Text + Environment.NewLine;
             }
         }
     }

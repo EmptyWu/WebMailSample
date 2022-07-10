@@ -8,7 +8,7 @@
         <asp:ListItem Value="Multiple" Text="複選"></asp:ListItem>
     </asp:RadioButtonList>
     <br />
-    <asp:ListBox ID="lb" runat="server" Rows="10" Visible="False"></asp:ListBox>
+    <asp:ListBox ID="lb" runat="server" Rows="10" ></asp:ListBox>
     <asp:Button ID="btnGet" runat="server" Text="取得ListBoxv選取值" OnClick="btnGet_Click" />
     <asp:Button ID="btnAll" runat="server" Text="取得ListBoxn所有值" OnClick="btnAll_Click" />
     <br />

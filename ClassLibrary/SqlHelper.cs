@@ -13,7 +13,8 @@ namespace ClassLibrary
         public static DataTable GetData(string strSQL)
         {
             DataTable dt = new DataTable();
-            string connstr = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""D:\SampleCode\WebMailSample\WebMailSample\App_Data\sample.mdf"";Integrated Security=True;Integrated Security=True";
+            string connstr = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\SampleCode\WebMailSample\WebMailSample\App_Data\sample.mdf;Integrated Security=True";
+            //string connstr = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""D:\SampleCode\WebMailSample\WebMailSample\App_Data\sample.mdf"";Integrated Security=True;Integrated Security=True";
             using (var conn = new SqlConnection(connstr))
             {
                 if (conn.State == ConnectionState.Closed) conn.Open();
